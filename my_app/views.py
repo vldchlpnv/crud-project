@@ -66,6 +66,5 @@ def edit(request, id):
 def delete(request, id):
     '''Удаление записи из базы данных'''
     order_model = get_object_or_404(OrederModel, id=id)
-    # if request.method == 'POST':
     order_model.delete()
     return HttpResponseRedirect('/')

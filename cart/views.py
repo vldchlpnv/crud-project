@@ -21,7 +21,7 @@ def add_to_cart(request, id):
     #  блок выбора обьекта для добавления в корзину
     choose_dish = get_object_or_404(OrederModel, id=id)
     quantity_to_add = 1
-    # Проверяем есть ли товар в хранилище если его нету то сразу вернетс сообщение о его отсутсттвии при попытке добавить товар в корзину
+    # Проверяем есть ли товар в хранилище если его нету то сразу вернется сообщение о его отсутсттвии при попытке добавить товар в корзину
     if choose_dish.quantity == 0:
         messages.error(request, 'Блюдо закончилось в хранилище')
         return redirect('cart:make_an_order')
@@ -32,8 +32,6 @@ def add_to_cart(request, id):
     if not created:
         find_in_cart.quantity += quantity_to_add
         find_in_cart.save()
-        messages.success(request,
-                         'Блюдо добавлено в корзину')  # Сообщение возвраащется при увеличении количества экземпляра класса
 
     # примечание для себя: Что бы сообщения корректно работали(при редиректе) необходимо
     # прописывать код шаблона для сообщений в том шаблоне куда происходит редирект!
@@ -66,7 +64,7 @@ def delete_from_cart(request, id):
     # Если количество == 0, то позиция будет удалена из корзины
     else:
         get_for_delete.delete()  # Удаляем полностью позицию и
-        get_from_oreder_model.quantity += 1  # Вохвращаем удаленное в хранилище
+        get_from_oreder_model.quantity += 1  # Возвращаем удаленное в хранилище
         get_from_oreder_model.save()
         messages.success(request, 'Блюдо полностью удалено из вашего заказа')
     return redirect('cart:cart_list')
