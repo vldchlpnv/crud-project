@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Main page{% endblock title %}</title>
+</head>
+<body>
+<div>
+    {% block head %}
+    <h1>Главная страница </h1>
+    {% endblock %}
+</div>
+
+
+<div>
+    {% block content %}
+    <p><a href="{% url 'login' %}">Войти в аккаунт</a></p>
+    <p><a href="">Меню</a></p>
+    <p><a href="">Часть администратора</a></p>
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Блюда доступные для заказа</title>
+</head>
+<body>
+<div>
+{% if messages %}
+    {% for message in messages %}
+        {{ message.tags }} {{ message }}
+    {% endfor %}
+{% endif %}
+</div>
+
+<a style="margin-left: 85%" href="{% url 'cart:cart_list' %}" >Мой заказ</a>
+
+<div>
+    {% if dishes_list %}
+
+    <h2>Блюда доступные для заказа</h2>
+    <ul>
+        {% for dish in dishes_list %}
+
+        <li> Наименование блюда: {{dish.dish}} |
+            Цена: {{dish.price}}| <a href="{% url 'cart:add_to_cart' dish.id %}">Добавить в заказ</a> </li>
+
+        {% endfor %}
+    </ul>
+    {% else %}
+
+    <h2>Нет доступных блюд</h2>
+
+    {% endif %}
+</div>
+
+
+</body>
+</html>

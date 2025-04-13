@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение значенйи в базе данных</title>
+</head>
+
+<body>
+        <form method="post" action="{% url 'my_app:edit' order_model.id %}">
+            {% csrf_token %}
+
+             <p> <label>Блюдо: </label>
+                 <input type="text" placeholder="Введите новое значение" name="dish">
+             </p>
+
+            <p> <label>Количество: </label>
+                <input type="number" placeholder="Введите новое значение" name="quantity">
+            </p>
+
+            <p> <label>Цена: </label>
+                <input type="number" placeholder="Введите новое значение" name="price">
+            </p>
+
+                <input type="submit" name="Изменить">
+
+        </form>
+
+</body>
+</html>

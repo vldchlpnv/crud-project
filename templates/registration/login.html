@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% block title %}<title>Login</title> {% endblock %}
+
+</head>
+<body>
+
+{% block head %}
+<h1>Страница регистрации</h1>
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <p><input type="submit" value="Вход"></p>
+
+
+</form>
+
+{% endblock %}
+
+</body>
+</html>

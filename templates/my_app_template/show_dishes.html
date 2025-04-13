@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои блюда</title>
+</head>
+<body>
+<div>
+       <form method="post" action="{% url 'my_app:create' %}">
+           {% csrf_token %}
+
+           <p>
+               <label>Наименование блюда</label>
+                <input type="text" placeholder="Введите наименование блюда" name="dish">
+
+           </p>
+
+          <p>
+              <label>Количество</label>
+               <input type="number" placeholder="Введите количество" name="quantity">
+
+          </p>
+
+          <p>
+              <label>Цена</label>
+               <input type="number" placeholder="Введите цену" name="price">
+          </p>
+
+           <p>
+               <input type="submit" value="Сохранить">
+           </p>
+       </form>
+
+        {% for dish in all_dishes %}
+            {{dish.dish}}
+            {{dish.quantity}}
+        {% endfor %}
+
+
+</body>
+</html>

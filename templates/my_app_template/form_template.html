@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестирую формы</title>
+</head>
+<body>
+
+<div>
+
+    <a href="{% url 'cart:make_an_order' %}" style="margin-left: 85%">Сделать заказ</a>
+
+</div>
+<div>
+    <form method="post" action="{% url 'my_app:create' %}">
+        {% csrf_token %}
+
+        <p>
+            <label>Наименование блюда</label>
+            <input type="text" placeholder="Введите наименование блюда" name="dish">
+
+        </p>
+
+        <p>
+            <label>Количество</label>
+            <input type="number" placeholder="Введите количество" name="quantity">
+
+        </p>
+
+        <p>
+            <label>Цена</label>
+            <input type="number" placeholder="Введите цену" name="price">
+        </p>
+
+        <p>
+            <input type="submit" value="Сохранить">
+        </p>
+    </form>
+
+    {% if all_dishes %}
+
+    <h2 style="margin-left: 20%">Блюда в базе данных</h2>
+
+    <table>
+
+        <thead align="center">
+        <th width="15%">Наименование</th>
+        <th width="10%">Количество</th>
+        <th width="10%">Цена</th>
+        </thead>
+        {% for dish in all_dishes %}
+        <tbody align="center">
+
+        <td>{{dish.dish}}</td>
+
+        <td>{{dish.quantity}}</td>
+
+        <td>{{dish.total_price}}</td>
+        <td><a href="{% url 'my_app:edit' dish.id %}">Изменить</a>|<a
+                href="{% url 'my_app:delete' dish.id %}">Удалить</a></td>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% else %}
+    <h2 style="margin-left: 20%">Блюда в базе данных отсутствуют</h2>
+
+    {% endif %}
+
+
+</body>
+</html>

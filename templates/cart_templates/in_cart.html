@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+<a href="{% url 'cart:make_an_order' %}">Вернуться на страницу выбора блюд</a>
+<div>
+    {% if messages %}
+    {% for message in messages %}
+    {{ message.tags }} {{ message }}
+    {% endfor %}
+    {% endif %}
+</div>
+
+<div>
+
+    {% if in_cart %}
+
+    <ul>
+
+        {% for element in in_cart %}
+
+
+        <li>Наименование: {{element.dish_name.dish}} - Количество: {{element.quantity}} шт. - Цена:
+            {{element.position_total_price}} руб. | <a href="{% url 'cart:delete_from_cart' element.id %}">Удалить</a> |
+            <a href="{% url 'cart:delete_all' element.id %}">Удалить все</a>
+        </li>
+
+
+        {% endfor %}
+        <li>Количество блюд в заказе: {{res}}</li>
+        <li>Общая стоимость: {{order_price}} руб.</li>
+
+    </ul>
+
+    <a href="{% url 'order:plase_an_order' %}">Оформить заказ</a>
+
+    {% else %}
+
+    <h2>Корзина пуста</h2>
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+</html>
