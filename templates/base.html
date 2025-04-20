@@ -5,19 +5,39 @@
     <title>{% block title %}Main page{% endblock title %}</title>
 </head>
 <body>
+
+<h3>header</h3>
+
 <div>
     {% block head %}
     <h1>Главная страница </h1>
     {% endblock %}
 </div>
 
+{% block content %}
+<div>
+    {% if user.is_authenticated %}
+    <b>{{user.username}}</b> - В сети
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <a href="#" onclick="parentNode.submit();">Выход</a>
+    </form>
+    {% else %}
+    <p>Для оформления заказа необходим вход в систему</p>
+
+    <a href="{% url 'login' %}">Вход</a>
+    {% endif %}
+</div>
 
 <div>
-    {% block content %}
-    <p><a href="{% url 'login' %}">Войти в аккаунт</a></p>
-    <p><a href="">Меню</a></p>
-    <p><a href="">Часть администратора</a></p>
+
+    <p><a href="{% url 'cart:make_an_order' %}">Меню</a></p>
+    <p><a href="{% url 'my_app:dish_form' %}">Часть администратора</a></p>
     {% endblock %}
+
 </div>
+
+
+<h3>footer</h3>
 </body>
 </html>
